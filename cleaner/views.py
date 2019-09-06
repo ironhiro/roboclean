@@ -11,7 +11,6 @@ def index(request):
 
 def send(request):
     if request.method == 'POST':
-        logger.debug('settings.EMAIL_HOST_USER={}'.format(settings.EMAIL_HOST_USER))
         name = request.POST.get("name", "")
         email = request.POST.get("email","")
         contact = request.POST.get("contact","")
@@ -20,11 +19,32 @@ def send(request):
         subject = '시연 신청(' + name + ')'
         message = '이름: ' +name + '\n' + '연락처: ' + contact + '\n' + '시연 날짜: ' + date + '\n' + '주소: ' + address + '\n' + '이메일: ' + email
         from_email = settings.EMAIL_HOST_USER
-        email = EmailMessage(subject, message, from_email,[from_email])
-        email.send()
+        email_message = EmailMessage(subject, message, from_email,[from_email])
+        email_message.send()
         return redirect('index')
     else:
         return redirect('index')
 
+def contact(request):
+    if request.method == 'POST':
+        name = request.POST.get("name", "")
+        email = request.POST.get("email","")
+        contact = request.POST.get("contact","")
+        question = request.POST.get("question","")
+        subject = '문의사항(' + name + ')'
+        message = '이름: ' +name + '\n' + '연락처: ' + contact + '\n' +  '이메일: ' + email + '\n' + '문의사항: ' + question + '\n' 
+        from_email = settings.EMAIL_HOST_USER
+        email_message = EmailMessage(subject, message, from_email,[from_email])
+        email_message.send()
+        return redirect('index')
+    else:
+        return redirect('index')
+
+def about(request):
+    return render(request, 'cleaner/about.html')
+
+
+def roboclean(request):
+    return render(request, 'cleaner/roboclean.html')
 
 

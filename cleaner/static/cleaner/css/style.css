@@ -1,10 +1,12 @@
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css); 
+
 /* Base */
 body {
   line-height: 1.7;
   color: rgba(255, 255, 255, 0.5);
   font-weight: 400;
   font-size: 1.1rem;
-  font-family: "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: 'Noto Sans KR', sans-serif;
   background: #222831; }
 
 .float{
@@ -1805,3 +1807,4 @@ figure figcaption {
         .comment-list li .comment-body .reply:hover {
           color: #fff;
           background: #e3207b; }
+

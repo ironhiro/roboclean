@@ -39,6 +39,10 @@
         .floating:hover{
             right: -7px;//hide it by pushing it off the screen
         }
+        #about {
+          width: 100%;
+          height: 800px;
+        }
     </style>
   </head>
   <body>
@@ -47,7 +51,7 @@
 
   <div class="site-wrap">
 
-    <div class="site-navbar mt-4">
+    <div class="site-navbar mt-5">
         <div class="container py-1">
           <div class="row align-items-center">
             <div class="col-8 col-md-8 col-lg-4">
@@ -60,12 +64,12 @@
 
                 <ul class="site-menu js-clone-nav d-none d-lg-block">
                   <li class="active">
-                    <a href="">Home</a>
+                    <a href="/">Home</a>
                   </li>
-                  <li><a href="#">회사소개</a></li>
-                  <li><a href="#">Roboclean</a></li>
+                  <li><a href="/about">회사소개</a></li>
+                  <li><a href="/roboclean">Roboclean</a></li>
                   <li><a data-toggle="modal" data-target="#exampleModalLong">시연 신청</a></li>
-                  <li><a href="#">문의하기</a></li>
+                  <li><a data-toggle="modal" data-target="#exampleModalLong2">문의하기</a></li>
                 </ul>
               </nav>
             </div>
@@ -108,7 +112,7 @@
         </div>
       </div>
     </footer>
-
+    
   </div>
    <p class="floating"><a href="#" data-toggle="modal" data-target="#exampleModalLong" class="btn btn-primary px-4 py-3" style="color: white">시연  신청</a></p>
 
@@ -146,5 +150,107 @@
 
     
 </script>
+  <!-- Modal -->
+    <div class="modal fade" id="exampleModalLong2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title" id="exampleModalLongTitle" style="color:black; font-size:x-large;">문의 사항</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" style="color:black;">
+            <form role="form" method="POST" action="/ask/">
+                {% csrf_token %}
+                    <div class="form-group">
+                        <label class="control-label">이름</label> <small style="color:crimson;">*</small>
+                        <div>
+                            <input  type="text" class="form-control input-lg" name="name" value="" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">연락처</label> <small style="color:crimson;">*</small>
+                        <div>
+                            <input type="text" class="form-control input-lg" name="contact" value="" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">E-Mail</label> <small style="color:crimson;">*</small>
+                        <div>
+                            <input type="email" class="form-control input-lg" name="email" value="" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">문의사항</label> <small style="color:crimson;">*</small>
+                        <div>
+                            <textarea type="text" class="form-control input-lg" name="question" value="" cols="40" rows="8" reqruired>
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                        <button type="submit" class="btn btn-primary">보내기</button>
+                    </div>
+              </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title" id="exampleModalLongTitle" style="color:black; font-size:x-large;">시연 신청</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" style="color:black;">
+            <form role="form" method="POST" action="/send/">
+                {% csrf_token %}
+                    <div class="form-group">
+                        <label class="control-label">이름</label> <small style="color:crimson;">*</small>
+                        <div>
+                            <input id="request_name" type="text" class="form-control input-lg" name="name" value="" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">연락처</label> <small style="color:crimson;">*</small>
+                        <div>
+                            <input id="request_contact" type="text" class="form-control input-lg" name="contact" value="" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">E-Mail</label> <small style="color:crimson;">*</small>
+                        <div>
+                            <input id="request_email" type="email" class="form-control input-lg" name="email" value="" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">방문 희망일</label> <small style="color:crimson;">*</small>
+                        <div class='input-group date' id='datetimepicker1'>
+                            <input id="request_date" size="16" type="text" name="date_time" placeholder="2000-01-01" readonly class="form_datetime" required/>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">주소</label> <small style="color:crimson;">*</small>
+                        <div>
+                            <input id="request_addr" type="text" class="form-control input-lg" name="address" value="" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                        <button type="submit" class="btn btn-primary">보내기</button>
+                    </div>
+              </form>
+          </div>
+
+        </div>
+      </div>
   </body>
 </html>
